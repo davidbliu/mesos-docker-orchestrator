@@ -1,0 +1,28 @@
+<head>
+	<style type = 'text/css'>
+	.instance_name
+	{
+		margin-left: 25px;
+	}
+	.instance_info
+	{
+		margin-left: 75px;
+	}
+	</style>
+</head>
+
+<h1>Info</h1>
+
+{% for service in registered.keys() %}
+<div class='service_wrapper'>
+	<b class='service_name'>{{ service }}</b>
+	{% for instance in registered[service].keys() %}
+	<div class='service_instance'>
+		<div class='instance_name'>{{ registered[service][instance]['instance_name'] }}</div>
+		<div class='instance_info'>host: {{ registered[service][instance]['instance_host'] }}</div>
+		<div class='instance_info'>ports: {{ registered[service][instance]['port_mapping'] }}</div>
+	</div>
+	{% endfor %}
+</div>
+{% endfor %}
+

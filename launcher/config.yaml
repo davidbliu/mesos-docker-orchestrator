@@ -1,0 +1,54 @@
+#
+# need to have launched etcd and marathon prior
+#
+etcd:
+  host: "54.189.223.174"
+  port: 4001
+marathon:
+  host: "54.188.87.91"
+  port: 8080
+
+services:
+  rails:
+    # image: "davidbliu/autorails_marathon1"
+    image: 54.189.193.228:5000/rails
+    ports: 
+      noname: 3000
+#
+# processor images
+#
+  zookeeper:
+    image: "davidbliu/zookeeper_processor"
+    ports:
+      ssh: 22
+      client: 2181
+      peer: 2888
+      election: 3888
+    cpus: 0.1
+  kafka:
+    image: "davidbliu/kafka_processor_nossh"
+    ports:
+      ssh: 22
+      broker: 9092
+  cassandra:
+    image: 54.189.193.228:5000/cassandra-processor-s # this version has subscriber
+    ports-hard:
+      storage: 7000
+      native: 9042
+      thrift: 9160
+    instances: 2
+    environment:
+      MIN_NODES: 2
+  processor:
+    image: "davidbliu/processor2"
+    ports:
+      ssh: 22
+      api: 9000
+    environment:
+      configuration: "spout"
+  ingestor:
+    image: "davidbliu/ingestor"
+    ports:
+      ssh: 22
+      api: 9000
+    cpu: 0.15
