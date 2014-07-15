@@ -31,8 +31,8 @@ sudo easy_install /tmp/mesos.egg
 # configure to use deimos
 #
 sudo apt-get -y install git
-clone deimos modified repo and run python setup.py install
-	clone from here:
+git clone git@git.autodesk.com:t-liuda/deimos.git
+sudo python setup.py install
 
 #
 # start slave
