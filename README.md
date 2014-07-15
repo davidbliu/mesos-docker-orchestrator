@@ -30,8 +30,8 @@ You can see which containers are up and running by visiting http://{{ subscriber
 Images can be launched using launcher.py (provided in the laucher directory). Before images are launched, image information
 must be provided in config.yaml (an example is provided). You must specify etcd and marathon host and port addresses as well as
 the names of each of your services and what images they use. There is no need to specify which hosts/ports to put each instance on, as this
-will be handled by mesos (except cassandra ports those are hardcoded for now). 
-* place configuration information in config.yaml file
+will be handled by mesos.
+* declare configuration information in config.yaml file
   * etcd host and port
   * marathon host and port
   * each service
