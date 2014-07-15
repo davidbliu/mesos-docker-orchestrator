@@ -103,3 +103,4 @@ Images can use the same convenience functions implemented in maestro's guestutil
  * run cassandra-tester test to show it can read from last node only
 * send cleanup signal to previous two nodes
  * observe key repartition
+* comparisons between orchestration tools on github
