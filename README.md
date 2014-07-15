@@ -78,3 +78,28 @@ Images can use the same convenience functions implemented in maestro's guestutil
 
 ## Details
 ![alt tag](comparisons/mesos.png)
+
+## Demo
+* mesos master/slaves/marathon already running on ec2 instances
+ * mesos: http://54.188.87.91:5050/
+ * marathon: http://54.188.87.91:8080/
+* etcd already running
+* run subscriber on ec2 instance
+ * ssh -i helloworld.pem ec2-user@ec2-54-184-184-23.us-west-2.compute.amazonaws.com
+ * docker run -t -p 5000:5000 -e CONTAINER_HOST_ADDRESS=54.184.184.23 -e CONTAINER_HOST_PORT=5000 -v /home/ec2-user/docker-data:/opt/data 54.189.193.228:5000/subscriber
+ * see container info: http://54.184.184.23:5000/info
+* launch processor
+ * cassandra, zookeeper
+ * kafka
+ * processor
+ * send curl request to processor 
+ * curl -d raw={"hi"} {{ processor_host }}:{{ processor_ip }}/ -i
+* remove services except cassandra
+* run cassandra-tester populate to create 100 records in keyspace
+* run cassandra-tester test to read from keyspace
+* run updater.py cassandra 3 
+ * scale up cassandra to 3 nodes
+* modify cassandra-tester to only read from last node ip
+ * run cassandra-tester test to show it can read from last node only
+* send cleanup signal to previous two nodes
+ * observe key repartition
