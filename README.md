@@ -30,7 +30,7 @@ will be handled by mesos (except cassandra ports those are hardcoded for now).
   * etcd host and port
   * marathon host and port
   * each service
-  * for each service: iamge, ports (these must be explicitly EXPOSE in dockerfile) and should be listed in numberical order). 
+  * for each service: image, ports (must be explicit, use EXPOSE in Dockerfile) and should be listed in numberical order). 
   * you can also name port, ports should be listed in format {{ port_name }} : {{ exposed_port }}
   * do not specify which ports they map to, this is handled by mesos
   * cpus and mem (optional) to specify cpu and memory shares
