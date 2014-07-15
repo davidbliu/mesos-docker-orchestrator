@@ -5,21 +5,20 @@
 <img src='mesos.png' height=500></img>
 
 ## Kubernetes
-* type of product: container cluster management
+* __type of product: container cluster management__
 	* declarative syntax for setting up containers
 	* decouple applications from machines. dont care what machine application ends up on
 	* sent job descriptions to master node, will spawn containers on work nodes
 	* jobs described in "pods" (multiple containers per pod) for example web search frontend, datashard, data loader in one pod
 	* labels -> tag pods with labels. (like services in maestro)
-* kubernetes elements
+* __kubernetes elements__
 	* pod. atomic unit for application. bunch of containers that work well together. could be 1 container, 5 containers. etc
 	* replica controller : how many of your pods to keep up and running
 	* like instances for your application in marathon
 	* label: can make label queries (like service name for maestro, but can have many labels). like jquery selector
 	* service:
-* labels
 	* labels for services -> services live behind load balancer (round robin)
-* service discovery: containers can access other labeled services
+* __service discovery: containers can access other labeled services__
 	* labels act as selectors (label queries to pick a specific service) service containers live behind load balancer
 	* other containers can access service through the load balancer (round robin)
 	* ex: getenv('REDISSLAVE_SERVICE_PORT'), getenv('REDISMASTER_SERVICE_PORT'), etc...
@@ -27,7 +26,7 @@
 	* what about containers talking directly to other containers (not round robin load balancer)? change load balancer. make your own
 	* 43:43   https://www.youtube.com/watch?v=tsk0pWf4ipw
 	* <img src='kubernetes-fig1.png' height=300></img>
-* benefits of using kubernetes?
+* __benefits of using kubernetes?__
 	* keep containers running
 	* select out pods without having a sea of pods (dont have to worry about host machines)
 	* benefits over marathon on mesos? idk
