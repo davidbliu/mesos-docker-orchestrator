@@ -67,4 +67,4 @@ To be registered properly in etcd images should expose ports they need to map to
  * containers can register a callback url to subscriber to recieve updates. for example cassandra containers can receive updates when a node joins the cluster and run nodetool cleanup
 
 ## Details
-![alt tag](https://git.autodesk.com/t-liuda/mesos-docker-orchestrator/blob/master/topology.png)
+![alt tag](topology.png)
