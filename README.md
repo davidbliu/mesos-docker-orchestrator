@@ -4,8 +4,13 @@ mesos-docker-orchestrator
 mesos-docker orchestration tool
 
 ## Setting up a mesos cluster
-- on ubuntu 14.04 instance, execute commands listed in master-setup.txt for setting up master
-- on ubuntu 14.04 instances, execute commands listed in slave-setup.txt for setting up slave
+* chef?
+ * set zookeeper
+ * set up mesos master(s) with marathon
+ * set up mesos slave(s) with docker and deimos
+* current method
+ * on ubuntu 14.04 instance, manually execute commands listed in master-setup.txt for setting up master
+ * on ubuntu 14.04 instances, manually execute commands listed in slave-setup.txt for setting up slave
 
 ## Setting up etcd service discovery
 Service discovery is implemented with etcd and uses an event subscriber to marathon to maintain status of containers. 
