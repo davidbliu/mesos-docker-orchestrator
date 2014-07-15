@@ -20,6 +20,7 @@
 	* labels for services -> services live behind load balancer (round robin)
 * __service discovery: containers can access other labeled services__
 	* labels act as selectors (label queries to pick a specific service) service containers live behind load balancer
+	* __every host machine exposes service proxy__ not that useful for services where you must access specific containers ex: kafka
 	* other containers can access service through the load balancer (round robin)
 	* ex: getenv('REDISSLAVE_SERVICE_PORT'), getenv('REDISMASTER_SERVICE_PORT'), etc...
 	* ex from here: https://github.com/GoogleCloudPlatform/kubernetes/blob/master/examples/guestbook/README.md
