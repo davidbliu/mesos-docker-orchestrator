@@ -11,8 +11,11 @@
 	* labels -> tag pods with labels. (like services in maestro)
 * scheduler and workers
 	* labels for services -> services live behind load balancer (round robin)
-	* service discovery: containers can access other labeled services by accessing the load balancer address for that service (see figure below)
-![alt tag](kubernetes-fig1.png)
+	* service discovery: containers can access other labeled services
+	* labels act as selectors (label queries to pick a specific service) service containers live behind load balancer
+	* other containers can access service through the load balancer (round robin)
+	* what about containers talking directly to other containers (not round robin load balancer)? change load balancer. make your own
+	* ![alt tag](kubernetes-fig1.png)
 ![alt tag](kubernetes.png)
 
 
