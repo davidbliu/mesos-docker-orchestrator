@@ -105,4 +105,6 @@ Images can use the same convenience functions implemented in maestro's guestutil
  * run cassandra-tester test to show it can read from last node only
 * send cleanup signal to previous two nodes
  * observe key repartition
+ * ssh in and see:
+ * ssh -p 22000 container@{{ host_ip }}
 * comparisons between orchestration tools on github
