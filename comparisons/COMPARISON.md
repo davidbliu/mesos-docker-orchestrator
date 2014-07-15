@@ -1,9 +1,9 @@
 ## Centurion
 
 ## Maestro
-![alt tag](maestro.png)
+<img src='maestro.png' height=500></img>
 ## Mesos
-![alt tag](mesos.png)
+<img src='mesos.png' height=500></img>
 ## Kubernetes
 * type of product: container cluster management
 	* sent job descriptions to master node, will spawn containers on work nodes
@@ -15,8 +15,9 @@
 	* labels act as selectors (label queries to pick a specific service) service containers live behind load balancer
 	* other containers can access service through the load balancer (round robin)
 	* what about containers talking directly to other containers (not round robin load balancer)? change load balancer. make your own
-	* ![alt tag](kubernetes-fig1.png)
-![alt tag](kubernetes.png)
+	* <img src='kubernetes-fig1.png' height=300></img>
+
+<img src='kubernetes.png' height=500></img>
 
 
 
