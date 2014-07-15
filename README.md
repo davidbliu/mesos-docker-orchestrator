@@ -79,7 +79,7 @@ Images can use the same convenience functions implemented in maestro's guestutil
 ## Details
 ![alt tag](comparisons/mesos.png)
 
-## Demo
+## Sprint 1 Demo
 * mesos master/slaves/marathon already running on ec2 instances
  * mesos: http://54.188.87.91:5050/
  * marathon: http://54.188.87.91:8080/
