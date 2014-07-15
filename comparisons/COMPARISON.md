@@ -17,6 +17,7 @@
 	* ex: getenv('REDISSLAVE_SERVICE_PORT'), getenv('REDISMASTER_SERVICE_PORT'), etc...
 	* ex from here: https://github.com/GoogleCloudPlatform/kubernetes/blob/master/examples/guestbook/README.md
 	* what about containers talking directly to other containers (not round robin load balancer)? change load balancer. make your own
+	* 43:43   https://www.youtube.com/watch?v=tsk0pWf4ipw
 	* <img src='kubernetes-fig1.png' height=300></img>
 
 <img src='kubernetes.png' height=500></img>
@@ -25,6 +26,5 @@
 
 ## Other Technologies
 * skydock
-	* https://github.com/crosbymichael/skydock
-	* records container health into DNS server skydns
-	* services inside container can query
+* fleet
+* 
