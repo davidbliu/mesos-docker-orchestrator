@@ -42,6 +42,8 @@
 	* basic deploy/undeploy
 	* no service discovery example
 	* not built in
+* __benefits of using helios?__
+	* dont worry about which hosts task run on?
 
 
 ## Other Technologies
