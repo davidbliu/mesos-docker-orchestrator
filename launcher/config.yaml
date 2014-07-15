@@ -33,6 +33,7 @@ services:
   cassandra:
     image: 54.189.193.228:5000/cassandra-processor-s # this version has subscriber
     ports-hard:
+      ssh: 22
       storage: 7000
       native: 9042
       thrift: 9160
