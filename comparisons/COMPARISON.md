@@ -1,11 +1,12 @@
-## Centurion
-
 ## Maestro
 <img src='maestro.png' height=500></img>
+
 ## Mesos
 <img src='mesos.png' height=500></img>
+
 ## Kubernetes
 * type of product: container cluster management
+	* declarative syntax for setting up containers
 	* sent job descriptions to master node, will spawn containers on work nodes
 	* jobs described in "pods" (multiple containers per pod) for example web search frontend, datashard, data loader in one pod
 	* labels -> tag pods with labels. (like services in maestro)
@@ -22,6 +23,14 @@
 
 <img src='kubernetes.png' height=500></img>
 
+## Helios
+* job:  job name, a job version, the name of your Docker image, any environment variables you wish to pass to the running container, ports you wish to expose, and the command to run inside the container, if any.
+* master: Helios masters are the servers that the Helios CLI and other tools talk to. They coordinate the deployment of your Docker containers onto Helios agents.
+* agents: Helios agents, sometimes known as Helios hosts, are the machines on which the images you built eventually run. The masters tell agents to download jobs and run them.
+* examples provided on their github page
+	* basic deploy/undeploy
+	* no service discovery example
+	* not built in
 
 
 ## Other Technologies
