@@ -41,6 +41,10 @@ will be handled by mesos (except cassandra ports those are hardcoded for now).
   * ex: python launcher.py cassandra
 
 ## Setting up Docker images
+
+To be registered properly in etcd images should expose ports they need to map to host ports (explicit EXPOSE port1 port2... in Dockerfile)
+Images should also include python-etcd. An example of this is in docker-images/etcd-base
+
 Images can use the same convenience functions implemented in maestro's guestutils by importing from guestutils.py inside a startup python script
 * get_environment_name
 * get_service_name
@@ -58,8 +62,8 @@ Images can use the same convenience functions implemented in maestro's guestutil
  * output: exposed port
 * get_specific_exposed_port(service, container, port, default)
  * returns exposed port
-To be registered properly in etcd images should expose ports they need to map to host ports (explicit EXPOSE port1 port2... in Dockerfile)
-Images should also include python-etcd. An example of this is in docker-images/etcd-base
+
+
 ## Updating services
 * command line tool updater.py
  * scaling a service: python updater.py cassandra 3 (scale up/down to 3 instances)
