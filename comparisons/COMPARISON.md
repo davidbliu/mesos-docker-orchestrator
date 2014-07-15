@@ -1,10 +1,13 @@
 ## Maestro
 <img src='maestro.png' height=500></img>
 
-## Mesos
+## Common Themes
+Operate on cluster level instead of machine level. dont worry about which host which service
+
+## 1. Mesos
 <img src='mesos.png' height=500></img>
 
-## Kubernetes
+## 2. Kubernetes
 * __type of product: container cluster management__
 	* declarative syntax for setting up containers
 	* decouple applications from machines. dont care what machine application ends up on
@@ -34,7 +37,7 @@
 
 <img src='kubernetes.png' height=500></img>
 
-## Helios
+## 3. Helios
 * job:  job name, a job version, the name of your Docker image, any environment variables you wish to pass to the running container, ports you wish to expose, and the command to run inside the container, if any.
 * master: Helios masters are the servers that the Helios CLI and other tools talk to. They coordinate the deployment of your Docker containers onto Helios agents.
 * agents: Helios agents, sometimes known as Helios hosts, are the machines on which the images you built eventually run. The masters tell agents to download jobs and run them.
@@ -46,7 +49,13 @@
 	* dont worry about which hosts task run on?
 
 
+
 ## Other Technologies
 * skydock
 * fleet
-* 
+	* Deploy a single container anywhere on the cluster
+	* Deploy multiple copies of the same container
+	* Ensure that containers are deployed together on the same machine
+	* Forbid specific services from co-habitation
+	* Maintain N containers of a service, re-deploying on failure
+	* Deploy containers on machines matching specific metadata
