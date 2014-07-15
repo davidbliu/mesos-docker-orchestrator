@@ -88,7 +88,7 @@ Images can use the same convenience functions implemented in maestro's guestutil
  * ssh -i helloworld.pem ec2-user@ec2-54-184-184-23.us-west-2.compute.amazonaws.com
  * docker run -t -p 5000:5000 -e CONTAINER_HOST_ADDRESS=54.184.184.23 -e CONTAINER_HOST_PORT=5000 -v /home/ec2-user/docker-data:/opt/data 54.189.193.228:5000/subscriber
  * see container info: http://54.184.184.23:5000/info
-* launch processor
+* launch processor (show config.yaml)
  * cassandra, zookeeper
  * kafka
  * processor
