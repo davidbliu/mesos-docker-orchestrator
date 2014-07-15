@@ -20,7 +20,7 @@ You can see which containers are up and running by visiting http://{{ subscriber
 * build and push etcd and subscriber images (can be found in docker-images directory)
 * run etcd
   * must map a host port to containers exposed port 4001 
-  * ex: docker run -p 4002:4001 54.189.193.228:5000/etcd
+  * ex: docker run -p 4001:4001 54.189.193.228:5000/etcd
 * run subscriber
   * expects a mounted volume from host to container for config file so subscriber can tell what images to register with etcd
   * expects environment variables for CONTAINER_HOST_ADDRESS and CONTAINER_HOST_PORT. These are the public ips of the host and the port that is mapped to container port 5000
