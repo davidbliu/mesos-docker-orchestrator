@@ -14,6 +14,8 @@
 	* service discovery: containers can access other labeled services
 	* labels act as selectors (label queries to pick a specific service) service containers live behind load balancer
 	* other containers can access service through the load balancer (round robin)
+	* ex: getenv('REDISSLAVE_SERVICE_PORT'), getenv('REDISMASTER_SERVICE_PORT'), etc...
+	* ex from here: https://github.com/GoogleCloudPlatform/kubernetes/blob/master/examples/guestbook/README.md
 	* what about containers talking directly to other containers (not round robin load balancer)? change load balancer. make your own
 	* <img src='kubernetes-fig1.png' height=300></img>
 
