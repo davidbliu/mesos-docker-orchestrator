@@ -68,4 +68,4 @@ Images should also include python-etcd. An example of this is in docker-images/e
  * containers can register a callback url to subscriber to recieve updates. for example cassandra containers can receive updates when a node joins the cluster and run nodetool cleanup
 
 ## Details
-![alt tag](topology.png)
+![alt tag](comparisons/mesos.png)
