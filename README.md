@@ -63,6 +63,7 @@ To be registered properly in etcd images should expose ports they need to map to
 ## Updating services
 * command line tool updater.py
  * scaling a service: python updater.py cassandra 3 (scale up/down to 3 instances)
+ * will not affect already-running containers
 * within containers
  * containers can register a callback url to subscriber to recieve updates. for example cassandra containers can receive updates when a node joins the cluster and run nodetool cleanup
 
