@@ -13,7 +13,7 @@ mesos-docker orchestration tool
  * on ubuntu 14.04 instances, manually execute commands listed in slave-setup.txt for setting up slave
 
 ## Setting up etcd service discovery
-Service discovery is implemented with etcd and uses an event subscriber to marathon to maintain status of containers. 
+Service discovery is implemented with __etcd__ and uses an event __subscriber__ to marathon to maintain status of containers. 
 Before launching containers, you must set up an etcd host and a subscriber to marathon so that containers will be registered when mesos starts them.
 The subscriber is a lightweight flask app that recieves callbacks from marathon and updates configuration information in etcd.
 You can see which containers are up and running by visiting http://{{ subscriber_host }}:{{ subscriber_port }}/info
@@ -47,8 +47,8 @@ will be handled by mesos.
 
 ## Setting up Docker images
 
-To be registered properly in etcd images should expose ports they need to map to host ports (explicit EXPOSE port1 port2... in Dockerfile)
-Images should also include python-etcd. An example of this is in docker-images/etcd-base
+To be registered properly in etcd images __must expose ports__ they need to map to host ports (explicit EXPOSE port1 port2... in Dockerfile)
+Images should also __include python-etcd__. An example of this is in docker-images/etcd-base
 
 Images can use the same convenience functions implemented in maestro's guestutils by importing from guestutils.py inside a startup python script
 * get_environment_name
