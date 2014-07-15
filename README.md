@@ -37,10 +37,10 @@ will be handled by mesos (except cassandra ports those are hardcoded for now).
   * instances (optional) to specify how many instances by default to launch (these can be scaled up/down later)
   * environment (option) any additional environment variables to be passed
 * use launcher.py to launch containers
-  * is a command line tool (does not maintain state). launcher.py will make an api call to marathon, and the subscriber will be updated when your instances are running
-  * ex: python launcher.py {{ service_name }} 
-  * python launcher.py cassandra
+  * is a command line tool. launcher.py will make an api call to marathon, and the subscriber will be updated when your instances are running
+  * ex: python launcher.py cassandra
 
 ## Setting up docker images
+Images can use the same convenience functions implemented in maestro's guestutils.
 
 ## Updating services
