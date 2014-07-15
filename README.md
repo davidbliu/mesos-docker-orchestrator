@@ -93,7 +93,7 @@ Images can use the same convenience functions implemented in maestro's guestutil
  * kafka
  * processor
  * send curl request to processor 
- * curl -d raw={"hi"} {{ processor_host }}:{{ processor_ip }}/ -i
+ * curl -d raw={"hi"} {{ processor_host }}:{{ processor_port }}/ -i
 * remove services except cassandra
 * run cassandra-tester populate to create 100 records in keyspace
 * run cassandra-tester test to read from keyspace
