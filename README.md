@@ -1,4 +1,4 @@
-mesos-docker-orchestrator
+Mesos-Docker-Orchestrator
 =========================
 
 mesos-docker orchestration tool
