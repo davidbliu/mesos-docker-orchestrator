@@ -34,7 +34,7 @@ Operate on cluster level instead of machine level. dont worry about which host w
 	* keep containers running
 	* select out pods without having a sea of pods (dont have to worry about host machines)
 	* benefits over marathon on mesos? idk
-
+<img src='architecture.png' height=500></img>
 <img src='kubernetes.png' height=500></img>
 
 ## 3. Helios
