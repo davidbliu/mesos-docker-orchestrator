@@ -51,11 +51,14 @@ Operate on cluster level instead of machine level. dont worry about which host w
 
 
 ## Other Technologies
-* skydock
-* fleet
+* __skydock__
+* __fleet__
 	* Deploy a single container anywhere on the cluster
 	* Deploy multiple copies of the same container
 	* Ensure that containers are deployed together on the same machine
 	* Forbid specific services from co-habitation
 	* Maintain N containers of a service, re-deploying on failure
 	* Deploy containers on machines matching specific metadata
+* __kubernetes-mesos__
+	* support for running other frameworks alongside kubernetes on mesos.
+	* kubernetes executor -> no real improvements if only using kubernetes 
