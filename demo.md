@@ -5,7 +5,7 @@ mesos-docker orchestration tool
 
 ## Background
 <img src='comparisons/Traditional.png' height=300></img>
-<img src='comparisons/Framework.png' height=300></img>
+<img src='comparisons/Framwork.png' height=300></img>
 
 ## Architecture
 ![alt tag](comparisons/mesos.png)
