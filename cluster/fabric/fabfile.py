@@ -12,7 +12,7 @@ def ec2_instances():
     #     regions=['us-west-2'],
     #     common_tags={'Name': 'slave'})
     # return tags.get_instances()
-    tags = EC2TagManager('AKIAJJMIYCLPCYO7RHKA', 'UEXDegNSvhTAnrYns2IGloTb/vwL4jeYzOW27vvq',
+    tags = EC2TagManager('awskey', 'secret',
         regions=['us-west-2'])
     return tags.get_instances()
 
