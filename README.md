@@ -58,17 +58,16 @@ Images can use the same convenience functions (same method names and signatures)
  * output: exposed port
 * get_specific_exposed_port(service, container, port, default)
  * returns exposed port
-__recieving updates__
 
+## Receiving Updates
+containers can be set up to recieve updates when certain services are modified. This is implemented through watching keys in etcd.
+* how to recieve updates:
+ * include watcher.py and watch_methods.py (just like guestutils)
+ * set WATCHES=service1,service2,service3 environment variable (comma separated list of services to watch)
+ * watcher.py will watch those keys in etcd and run the custom method in watch_methods.py
+ * implement watch_methods.py to respond appropriately to changes recieved from etcd
 
-## Updating services
-* command line tool updater.py
- * scaling a service: python updater.py cassandra 3 (scale up/down to 3 instances)
- * will not affect already-running containers
-* within containers
- * containers can register a callback url to subscriber to recieve updates. for example cassandra containers can receive updates when a node joins the cluster and run nodetool cleanup
-
-## Details
+## Architecture
 ![alt tag](comparisons/mesos.png)
 
 ## Sprint 1 Demo
