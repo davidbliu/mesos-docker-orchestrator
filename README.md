@@ -4,13 +4,13 @@ Mesos-Docker-Orchestrator
 mesos-docker orchestration tool
 
 ## Setting up a mesos cluster
-* chef?
- * set zookeeper
- * set up mesos master(s) with marathon
- * set up mesos slave(s) with docker and deimos
-* current method
- * on ubuntu 14.04 instance, manually execute commands listed in master-setup.txt for setting up master
- * on ubuntu 14.04 instances, manually execute commands listed in slave-setup.txt for setting up slave
+* fabric files included for getting up and running with a mesos cluster
+* what it will do:
+* how to do it:
+ * place amazon key, secret, path to keypair, and master public ip in fabfile.py
+ * launch ec2 instances. name master node "mesos-master" and slave nodes "mesos-slave"
+ * __fab master_env master_main__ to install and run mesos, marathon, etcd, subscriber on master
+ * __fab slave_env slave_main__ to install and run mesos, deimos on slaves
 
 ## Setting up etcd service discovery
 Service discovery is implemented with __etcd__ and uses an event __subscriber__ to marathon to maintain status of containers. 
