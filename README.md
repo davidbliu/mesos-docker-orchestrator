@@ -6,7 +6,10 @@ mesos-docker orchestration tool
 ## Setting up a mesos cluster
 * fabric files included for getting up and running with a mesos cluster
 * what it will do:
+ * setup and start mesos master with marathon. also run etcd and subscriber on master node for service discovery
+ * setup and start slave nodes with modified deimos 
 * how to do it:
+ * cd into cluster directory
  * place amazon key, secret, path to keypair, and master public ip in fabfile.py
  * launch ec2 instances. name master node "mesos-master" and slave nodes "mesos-slave"
  * __fab master_env master_main__ to install and run mesos, marathon, etcd, subscriber on master
@@ -16,34 +19,17 @@ mesos-docker orchestration tool
 Service discovery is implemented with __etcd__ and uses an event __subscriber__ to marathon to maintain status of containers. 
 Before launching containers, you must set up an etcd host and a subscriber to marathon so that containers will be registered when mesos starts them.
 The subscriber is a lightweight flask app that recieves callbacks from marathon and updates configuration information in etcd.
-You can see which containers are up and running by visiting http://{{ subscriber_host }}:{{ subscriber_port }}/info
+* (you do not need to do these setups if you used provided fabric files to setup cluster)
 * build and push etcd and subscriber images (can be found in docker-images directory)
 * run etcd
   * must map a host port to containers exposed port 4001 
   * ex: docker run -p 4001:4001 54.189.193.228:5000/etcd
 * run subscriber
-  * expects a mounted volume from host to container for config file so subscriber can tell what images to register with etcd
   * expects environment variables for CONTAINER_HOST_ADDRESS and CONTAINER_HOST_PORT. These are the public ips of the host and the port that is mapped to container port 5000
-  * ex: docker run -t -p 5000:5000 -e CONTAINER_HOST_ADDRESS=54.184.184.23 -e CONTAINER_HOST_PORT=5000 -v /home/ec2-user/docker-data:/opt/data 54.189.193.228:5000/subscriber
+  * ex: docker run -t -p 5000:5000 -e CONTAINER_HOST_ADDRESS=54.184.184.23 -e CONTAINER_HOST_PORT=5000 54.189.193.228:5000/subscriber
 
 ## Launching images
-Images can be launched using launcher.py (provided in the laucher directory). Before images are launched, image information
-must be provided in config.yaml (an example is provided). You must specify etcd and marathon host and port addresses as well as
-the names of each of your services and what images they use. There is no need to specify which hosts/ports to put each instance on, as this
-will be handled by mesos.
-* declare configuration information in config.yaml file
-  * etcd host and port
-  * marathon host and port
-  * each service
-  * for each service: image, ports (must be explicit, use EXPOSE in Dockerfile) and should be listed in numberical order). 
-  * you can also name port, ports should be listed in format {{ port_name }} : {{ exposed_port }}
-  * do not specify which ports they map to, this is handled by mesos
-  * cpus and mem (optional) to specify cpu and memory shares
-  * instances (optional) to specify how many instances by default to launch (these can be scaled up/down later)
-  * environment (option) any additional environment variables to be passed
-* use launcher.py to launch containers
-  * is a command line tool. launcher.py will make an api call to marathon, and the subscriber will be updated when your instances are running
-  * ex: python launcher.py cassandra
+Interface to mesos cluster is Theseus, a framework build to interface with marathon. 
 
 ## Setting up Docker images
 
