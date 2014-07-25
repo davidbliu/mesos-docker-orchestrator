@@ -1,0 +1,3 @@
+[submodule "Theseus"]
+	path = Theseus
+	url = git@git.autodesk.com:t-liuda/Theseus.git
