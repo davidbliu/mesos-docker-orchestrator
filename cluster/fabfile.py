@@ -1,28 +1,42 @@
 from fabric.api import *
 from fabric_ec2 import EC2TagManager
 import re
-def ec2_instances():
-    """ Set up the Fabric env.roledefs, using the correct roles for the given environment
-    """
-    #
-    # CHANGE TAG BASED ON MASTER OR SLAVE
-    # TODO command line input for tag
-    #
 
-    tags = EC2TagManager('awskey', 'secret',
-        regions=['us-west-2'])
+#
+# SET THESE TO YOUR VALUES
+#
+amazon_key = 'asdf'
+amazon_secret = 'asdf'
+amazon_regions = ['us-west-1']
+keypair_location = '/home/david/dliukeypair.pem'
+mesos_master_host = '50.18.130.73'
+
+
+def ec2_slave_instances():
+    tags = EC2TagManager(amazon_key, amazon_secret, regions= amazon_regions, common_tags={'Name': 'mesos-slave'})
     return tags.get_instances()
 
-print 'these are ec2_instances'
-print ec2_instances()
-for instance in ec2_instances():
-	print instance
+def ec2_master_instances():
+	tags = EC2TagManager(amazon_key, amazon_secret, regions = amazon_regions, common_tags = {'Name':'mesos-master'})
+	return tags.get_instances()
 
-env.user = 'ubuntu'
-env.hosts = ec2_instances()
-env.key_filename = [
-    '/home/david/helloworld.pem'
-]
+#
+# setup which hosts to install on
+#
+def master_env():
+	master_hosts = ec2_master_instances()
+	env.hosts = master_hosts
+	env.user = 'ubuntu'
+	env.key_filename = [keypair_location]
+	print 'these are your masters '+str(len(master_hosts))
+	
+def slave_env():
+	slave_hosts = ec2_slave_instances()
+	env.hosts = slave_hosts
+	env.user = 'ubuntu'
+	env.key_filename = [keypair_location]
+	env.mesos_master_host = mesos_master_host
+	print 'these are your slaves '+str(len(slave_hosts))
 
 @parallel
 def mesos():
@@ -76,7 +90,8 @@ def slave():
 	#
 	# start the slave node
 	#
-	execution_string = 'mesos-slave --master=zk://54.188.87.91:2181/mesos --containerizer_path=/usr/local/bin/deimos --isolation=external --hostname='+final_ip+' start'
+	master_string = '--master=zk://'+str(env.mesos_master_host)+':2181/mesos'
+	execution_string = 'mesos-slave '+master_string+' --containerizer_path=/usr/local/bin/deimos --isolation=external --hostname='+final_ip+' start'
 	print execution_string
 	sudo("pkill -f 'mesos-slave'")
 	sudo(execution_string)
@@ -105,11 +120,15 @@ def master():
 def cache_images():
 	sudo('docker pull 54.189.193.228:5000/flask')
 	sudo('docker pull 54.189.193.228:5000/haproxy')
-	sudo('docker pull 54.189.193.228:5000/cassandra-processor-s')
+	sudo('docker pull 54.189.193.228:5000/cassandra')
 	sudo('docker pull davidbliu/kafka_processor_nossh')
-	sudo('docker pull davidbliu/zookeeper_processor')
-	
+	sudo('docker pull 54.189.193.228:5000/zookeeper_processor')
+	sudo('docker pull 54.189.193.228:5000/watcher')
 
+
+@parallel
+def cadvisor():
+	sudo('docker run --volume=/var/run:/var/run:rw --volume=/sys/fs/cgroup/:/sys/fs/cgroup:ro --volume=/var/lib/docker/:/var/lib/docker:ro --publish=8080:8080 --detach=true google/cadvisor:latest')
 
 
 @parallel

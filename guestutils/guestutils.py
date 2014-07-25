@@ -50,7 +50,7 @@ def get_port(name, default = 'default_port'):
 	if default != 'default_port':
 		return get_specific_exposed_port(get_service_name(), get_container_name(), name, default)
 	return get_specific_exposed_port(get_service_name(), get_container_name(), name)
-def get_node_list(service, ports=[], minimum=1):
+def get_node_list(service, ports=[], minimum=1, labels = []):
 	# It takes in a service name and an optional list of port names and returns the list of IP addresses/hostname of the containers of that service. For each port specified, in order, it will append :<port number> to each host with the external port number. For example, if you want to return the list of ZooKeeper endpoints with their client ports:
 	# get_node_list('zookeeper', ports=['client']) -> ['c414.ore1.domain.com:2181', 'c415.ore1.domain.com:2181']
 	nodes = []
@@ -59,13 +59,22 @@ def get_node_list(service, ports=[], minimum=1):
 
 	for key in all_service_instances.keys():
 		instance = all_service_instances[key]
-		node = instance['instance_host']
-		portlist = ""
-		for port in ports:
-			p = get_specific_port(instance['service_name'], instance['instance_name'], port)
-			p = ":" + p
-			portlist = portlist + p
-		nodes.append(str(node + portlist))
+		#
+		# only proceed if the labels are correct
+		# @LABELS
+		#
+		fits_query=True
+		for label in labels:
+			if label not in instance['labels']:
+				fits_query = False
+		if fits_query:
+			node = instance['instance_host']
+			portlist = ""
+			for port in ports:
+				p = get_specific_port(instance['service_name'], instance['instance_name'], port)
+				p = ":" + p
+				portlist = portlist + p
+			nodes.append(str(node + portlist))
 	return nodes
 def get_specific_host(service, container):
 	# which can be used to return the hostname or IP address of a specific container from a given service, and

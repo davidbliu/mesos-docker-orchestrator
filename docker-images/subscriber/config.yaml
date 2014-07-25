@@ -1,0 +1,23 @@
+etcd: {host: 54.189.223.174, port: 4001}
+ingestor:
+  '[''dragons'', ''fairydust'', ''hello'', ''ponies'']':
+    cpus: 0.05
+    environment: {APP_NAME: Shark Bait Whoo Ha Ha, KEYSPACE_NAME: flask_keyspace2,
+      TABLE_NAME: flask_table2}
+    image: 54.189.193.228:5000/flask
+    instances: 1
+    labels: [hello, ponies, dragons, fairydust]
+    mem: 16
+    ports: {api: 5000, ssh: 22}
+marathon: {host: localhost, port: 8080}
+my_name_is_david:
+  '[''halogen'', ''hoohoo'', ''main'', ''money'']':
+    cpus: 0.05
+    custom_constraints: fixed-host
+    environment: {APP_NAME: D Liu Yo Dawg Mayn, KEYSPACE_NAME: flask_keyspace2, TABLE_NAME: flask_table2}
+    image: 54.189.193.228:5000/flask
+    instances: 2
+    labels: [main, halogen, money, hoohoo]
+    mem: 16
+    ports: {api: 5000, ssh: 22}
+subscriber: {host: localhost, port: 5000}

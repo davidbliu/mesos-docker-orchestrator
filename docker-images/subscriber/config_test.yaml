@@ -1,0 +1,114 @@
+#
+# need to have launched etcd and marathon prior
+#
+etcd:
+  host: "54.189.223.174"
+  port: 4001
+marathon:
+  host: "54.188.87.91"
+  # host: localhost
+  port: 8080
+
+
+
+services:
+
+#
+# testing kubernetes functions
+#
+  flask:
+    image: 54.189.193.228:5000/flask
+    ports: 
+      api: 5000
+    environment:
+      APP_NAME: another_env
+    instances: 3
+    cpus: 0.1 
+    labels: flask testing
+  haproxy:
+    image: 54.189.193.228:5000/haproxy
+    ports:
+      ssh: 22
+      proxy: 80
+      idk: 443
+      suscriber: 5000
+    environment:
+      PROXY_SERVICE: flask
+      PROXY_PORT: api
+  flask.staging:
+    image: 54.189.193.228:5000/flask
+    ports:
+      api: 5000
+    environment:
+      APP_NAME: platypus
+    instances: 2
+    cpus: 0.1
+    labels: flask production
+
+  # cassandraasdf:
+  #   image: "davidbliu/cassandra_exposed7"
+  #   ports: 
+  #     storage: 7000
+  #     transport: 9042
+  #     rpc: 9160
+  #   instances: 3
+  # zookeeperasdf:
+  #   image: "davidbliu/actzookeeper"
+  #   ports:
+  #     client: 2181
+  # kafkaasdf:
+  #   image: "davidbliu/kafka_marathon5"
+  #   ports:
+  #     broker: 9092
+
+
+  rails:
+    # image: "davidbliu/autorails_marathon1"
+    image: 54.189.193.228:5000/rails
+    ports: 
+      noname: 3000
+#
+# processor images
+#
+  zookeeper:
+    image: "davidbliu/zookeeper_processor"
+    ports:
+      ssh: 22
+      client: 2181
+      peer: 2888
+      election: 3888
+    cpus: 0.1
+  kafka:
+    image: "davidbliu/kafka_processor_nossh"
+    ports:
+      ssh: 22
+      broker: 9092
+    cpus: 0.5
+  cassandra:
+    # image: "davidbliu/cassandra_processor_nossh1"
+    # image: "54.202.1.103:5000/cassandra-processor-nossh"
+    # image: "54.202.1.103:5000/cassandra-processor"
+    # image: 54.189.193.228:5000/cassandra-processor
+    image: 54.189.193.228:5000/cassandra-processor-s # this version has subscriber
+    # TODO cassandra ports are hardcoded 22, 5000, 7000, 9042, 9160
+    ports-hard:
+      storage: 7000
+      native: 9042
+      thrift: 9160
+    instances: 2
+    environment:
+      MIN_NODES: 2
+    volumes: ['/home/ser/ubuntu/volume-test:/opt/testvolume']
+  processor:
+    image: "davidbliu/processor2"
+    ports:
+      ssh: 22
+      api: 9000
+    environment:
+      configuration: "spout"
+  ingestor:
+    image: "davidbliu/ingestor"
+    ports:
+      ssh: 22
+      api: 9000
+    cpu: 0.15

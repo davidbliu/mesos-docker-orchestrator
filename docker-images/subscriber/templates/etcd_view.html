@@ -8,6 +8,9 @@
 	{
 		margin-left: 75px;
 	}
+	.port-list{
+		list-style-type: none;
+	}
 	</style>
 </head>
 
@@ -20,7 +23,16 @@
 	<div class='service_instance'>
 		<div class='instance_name'>{{ registered[service][instance]['instance_name'] }}</div>
 		<div class='instance_info'>host: {{ registered[service][instance]['instance_host'] }}</div>
-		<div class='instance_info'>ports: {{ registered[service][instance]['port_mapping'] }}</div>
+		<div class='instance_info'>
+			<ul class='port-list'>
+			ports: 
+			{% for key in registered[service][instance]['port_mapping'].keys() %}
+			<li>{{ key }}: {{ registered[service][instance]['instance_host'] }}:{{ registered[service][instance]['port_mapping'][key]['external'][1][:-4] }}
+			</li>
+			{% endfor %}
+			</ul>
+		</div>
+		<div class='instance_info'>labels: {{registered[service][instance]['labels'] }}</div>
 	</div>
 	{% endfor %}
 </div>
