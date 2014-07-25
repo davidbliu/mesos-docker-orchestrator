@@ -19,7 +19,7 @@ mesos-docker orchestration tool
 Service discovery is implemented with __etcd__ and uses an event __subscriber__ to marathon to maintain status of containers. 
 Before launching containers, you must set up an etcd host and a subscriber to marathon so that containers will be registered when mesos starts them.
 The subscriber is a lightweight flask app that recieves callbacks from marathon and updates configuration information in etcd.
-* (you do not need to do these setups if you used provided fabric files to setup cluster)
+* __you do not need to do these setups if you used provided fabric files to setup cluster__
 * build and push etcd and subscriber images (can be found in docker-images directory)
 * run etcd
   * must map a host port to containers exposed port 4001 
@@ -29,7 +29,12 @@ The subscriber is a lightweight flask app that recieves callbacks from marathon 
   * ex: docker run -t -p 5000:5000 -e CONTAINER_HOST_ADDRESS=54.184.184.23 -e CONTAINER_HOST_PORT=5000 54.189.193.228:5000/subscriber
 
 ## Launching images
-Interface to mesos cluster is Theseus, a framework build to interface with marathon. 
+Interface to mesos cluster is Theseus, a framework build on top of marathon
+* accepts declarative specification about how you want your image deployed
+ * image -- name of your image
+ * environment -- environment variables
+ * ports -- port names and what exposed port they map to (mesos will find avaiable ports on host to map these to)
+ * 
 
 ## Setting up Docker images
 
