@@ -64,7 +64,7 @@ containers can be set up to recieve updates when certain services are modified. 
  * implement watch_methods.py to respond appropriately to changes recieved from etcd
 
 ## Architecture
-![alt tag](comparisons/mesos.png)
+![alt tag](comparisons/mesos-kub.png)
 
 ## Responsibilities
 __cluster manager (mesos) resonsibilities__
