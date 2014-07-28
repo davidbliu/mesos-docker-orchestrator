@@ -77,17 +77,20 @@ __cluster manager (mesos) resonsibilities__
  * metrics (cpu, memory, network etc). each host machine collect metrics about containers deployed on it
  * logs (log shipping)
 
-__layers__
+## Ideal (?) Separation
 
 application configuration
 * interfaces with cluster manager. what and how many to deploy. some constraints like deploy only on large vms and all containers on unique hosts etc
+
 cluster manager
 * know what is deployed where
 * can monitor slaves
+
 slave node
 * know about processes running on itself
 * monitor cpu memory network etc
 * logs
+
 application
 * should only care about itself
 * what to do with endpoints of other services
