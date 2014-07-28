@@ -66,6 +66,34 @@ containers can be set up to recieve updates when certain services are modified. 
 ## Architecture
 ![alt tag](comparisons/mesos.png)
 
+## Responsibilities
+__cluster manager (mesos) resonsibilities__
+* keep track of host/ports
+* provide interface for containers to query endpoints of other containers
+* provide interface for containers to recieve updates about dynamic container endpoints
+* keep track of what services are deployed
+ * label queries (get all ingestor staging nodes)
+* __not consistent with current architecture__
+ * metrics (cpu, memory, network etc). each host machine collect metrics about containers deployed on it
+ * logs (log shipping)
+
+__layers__
+
+application configuration
+* interfaces with cluster manager. what and how many to deploy. some constraints like deploy only on large vms and all containers on unique hosts etc
+cluster manager
+* know what is deployed where
+* can monitor slaves
+slave node
+* know about processes running on itself
+* monitor cpu memory network etc
+* logs
+application
+* should only care about itself
+* what to do with endpoints of other services
+* what to do when endpoints of other services change
+* how to shut down gracefully
+
 ## Sprint 1 Demo (old)
 * mesos master/slaves/marathon already running on ec2 instances
  * mesos: http://54.188.87.91:5050/
