@@ -11,3 +11,4 @@ guestutils have the same method signatures as maestro's guestutils
 containers can watch keys in etcd for chances with watcher.py. to watch keys, set WATCHES environment variable.
 * for example to watch cassandra and ingestor WATCHES=cassandra,ingestor
 * pluggable methods in watch_methods.py
+* service_change(service, delta) is a pluggable method that containers should write. input parameters are what service changed and by how much (delta=1 1 added delta=-1 1 removed)
