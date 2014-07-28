@@ -30,11 +30,7 @@ The subscriber is a lightweight flask app that recieves callbacks from marathon 
 
 ## Launching images
 Interface to mesos cluster is Theseus, a framework build on top of marathon
-* accepts declarative specification about how you want your image deployed
- * image -- name of your image
- * environment -- environment variables
- * ports -- port names and what exposed port they map to (mesos will find avaiable ports on host to map these to)
- * 
+* see theseus readme for more information
 
 ## Guestutils
 
@@ -70,7 +66,7 @@ containers can be set up to recieve updates when certain services are modified. 
 ## Architecture
 ![alt tag](comparisons/mesos.png)
 
-## Sprint 1 Demo
+## Sprint 1 Demo (old)
 * mesos master/slaves/marathon already running on ec2 instances
  * mesos: http://54.188.87.91:5050/
  * marathon: http://54.188.87.91:8080/
