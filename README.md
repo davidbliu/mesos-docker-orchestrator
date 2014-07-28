@@ -97,6 +97,21 @@ application
 * what to do when endpoints of other services change
 * how to shut down gracefully
 
+## Alternate design choices
+* who updates configuration in etcd?
+ * current: subscriber to marathon
+ * process running on slave to check
+ * container
+* who records metrics
+ * current: container
+ * process running on slave
+* who holds logs/debug information
+ * current: container
+ * process running on slave
+* who holds record of what commands given to management framework (container config etc)?
+ * current: container management framework
+ * etcd (could have a directory for config and a directory for enpoint info)
+
 ## Sprint 1 Demo (old)
 * mesos master/slaves/marathon already running on ec2 instances
  * mesos: http://54.188.87.91:5050/
