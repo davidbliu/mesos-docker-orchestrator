@@ -14,18 +14,18 @@ in topology. generic methods link rolling upgrades with configurable wait interv
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
 - [Mesos-Docker-Orchestrator](#mesos-docker-orchestrator)
-- [Table of contents](#user-content-table-of-contents)
-- [Getting started](#user-content-getting-started)
-		- [Setting up a mesos cluster](#user-content-setting-up-a-mesos-cluster)
-		- [Setting up etcd service discovery](#user-content-setting-up-etcd-service-discovery)
-		- [Launching images](#user-content-launching-images)
-		- [Guestutils](#user-content-guestutils)
-		- [Receiving Updates](#user-content-receiving-updates)
-- [Architecture](#user-content-architecture)
-	- [Responsibilities](#user-content-responsibilities)
-	- [Ideal (?) Separation](#user-content-ideal--separation)
-	- [Alternate design choices](#user-content-alternate-design-choices)
-	- [Sprint 1 Demo (old)](#user-content-sprint-1-demo-old)
+- [Table of contents](#table-of-contents)
+- [Getting started](#getting-started)
+		- [Setting up a mesos cluster](#setting-up-a-mesos-cluster)
+		- [Setting up etcd service discovery](#setting-up-etcd-service-discovery)
+		- [Launching images](#launching-images)
+		- [Guestutils](#guestutils)
+		- [Receiving Updates](#receiving-updates)
+- [Architecture](#architecture)
+	- [Responsibilities](#responsibilities)
+	- [Ideal (?) Separation](#ideal--separation)
+	- [Alternate design choices](#alternate-design-choices)
+- [Sprint 1 Demo (old)](#sprint-1-demo-old)
 
 # Getting started
 
