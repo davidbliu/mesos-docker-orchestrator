@@ -21,7 +21,7 @@ in topology. generic methods link rolling upgrades with configurable wait interv
 	- [Receiving Updates](#receiving-updates)
 - [Architecture](#architecture)
 	- [Layers](#layers)
-	- [Other](#other)
+	- [Other](#separation-of-concerns)
 	- [Alternate design choices](#alternate-design-choices)
 - [Demos](#demos)
 	- [Sprint 1 Demo (old)](#sprint-1-demo-old)
@@ -96,23 +96,24 @@ containers can be set up to recieve updates when certain services are modified. 
 
 ### Layers
 * workstation
+  * developer provides declarative configuration for applications
+  * environment variables, ports, labels, constraints, image name, instances, cpu, mem, etc
 * marathon framework (theseus)
-* marathon
-* mesos-master
-* slave host machine
-* mesos-slave
-* docker
-
-### Other
-__cluster manager (mesos) resonsibilities__
-* keep track of host/ports
-* provide interface for containers to query endpoints of other containers
-* provide interface for containers to recieve updates about dynamic container endpoints
-* keep track of what services are deployed
- * label queries (get all ingestor staging nodes)
-* __not consistent with current architecture__
- * metrics (cpu, memory, network etc). each host machine collect metrics about containers deployed on it
- * logs (log shipping)
+  * organizes and manages services deployed (what is deployed where, what ports, what configuration, etc)
+  * allow user to see what is deployed, can filter by labels (like cassandra testing)
+  * basic container metrics and logs are collected in one place
+  * basic scheduling routines: rolling restart service with configurable wait time, constraints for which hosts to deploy onto, etc
+* mesos master and marathon
+  * recieves apps and tasks from theseus and ensures they remain running
+  * publish information to subscriber -> etcd
+* mesos-slave machine
+  * makes resource offers, recieves tasks from mesos master, executes them
+  * basic logging and metrics for containers running on it 
+  * should be a "container-optimized machine". it is configured to run containers -> and monitor them and report how they are doing
+* deimos and docker
+  * run the container
+  * containers recieve topology from etcd
+  * containers watch etcd for updates
 
 #### separation of concerns
 
