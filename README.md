@@ -21,8 +21,7 @@ in topology. generic methods link rolling upgrades with configurable wait interv
 	- [Receiving Updates](#receiving-updates)
 - [Architecture](#architecture)
 	- [Layers](#layers)
-	- [Responsibilities](#responsibilities)
-	- [Ideal (?) Separation](#ideal--separation)
+	- [Other](#other)
 	- [Alternate design choices](#alternate-design-choices)
 - [Demos](#demos)
 	- [Sprint 1 Demo (old)](#sprint-1-demo-old)
@@ -104,7 +103,7 @@ containers can be set up to recieve updates when certain services are modified. 
 * mesos-slave
 * docker
 
-### Responsibilities
+### Other
 __cluster manager (mesos) resonsibilities__
 * keep track of host/ports
 * provide interface for containers to query endpoints of other containers
@@ -115,27 +114,20 @@ __cluster manager (mesos) resonsibilities__
  * metrics (cpu, memory, network etc). each host machine collect metrics about containers deployed on it
  * logs (log shipping)
 
-### Ideal (?) Separation
+#### separation of concerns
 
-application configuration
-* interfaces with cluster manager. what and how many to deploy. some constraints like deploy only on large vms and all containers on unique hosts etc
+__application configuration:__ interfaces with cluster manager. what and how many to deploy. some constraints like deploy only on large vms and all containers on unique hosts etc
 
-cluster manager
-* know what is deployed where
-* can monitor slaves
+__cluster manager:__ know what is deployed where, can monitor slaves, resources and performance aware (knows what resources are
+available and what services/containers are stressed
 
-slave node
-* know about processes running on itself
-* monitor cpu memory network etc
-* logs
+__slave node:__ know about processes running on itself, monitor cpu memory network etc, logs -> ship to cluster manager
 
-application
-* should only care about itself
-* what to do with endpoints of other services
-* what to do when endpoints of other services change
-* how to shut down gracefully
+__application:__ only needs to care about itself (what to do with endpoints of other services, 
+what to do when endpoints of other services change, how to shut down gracefully (ex when sigterm sent to it etc))
 
-### Alternate design choices
+
+#### Alternate design choices
 * who updates configuration in etcd?
  * current: subscriber to marathon
  * process running on slave to check
