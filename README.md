@@ -12,7 +12,7 @@ in topology. generic methods link rolling upgrades with configurable wait interv
 # Getting started
 
 
-## Setting up a mesos cluster
+### Setting up a mesos cluster
 * fabric files included for getting up and running with a mesos cluster
 * what it will do:
  * setup and start mesos master with marathon. also run etcd and subscriber on master node for service discovery
@@ -24,7 +24,7 @@ in topology. generic methods link rolling upgrades with configurable wait interv
  * __fab master_env master_main__ to install and run mesos, marathon, etcd, subscriber on master
  * __fab slave_env slave_main__ to install and run mesos, deimos on slaves
 
-## Setting up etcd service discovery
+### Setting up etcd service discovery
 Service discovery is implemented with __etcd__ and uses an event __subscriber__ to marathon to maintain status of containers. 
 Before launching containers, you must set up an etcd host and a subscriber to marathon so that containers will be registered when mesos starts them.
 The subscriber is a lightweight flask app that recieves callbacks from marathon and updates configuration information in etcd.
@@ -37,11 +37,11 @@ The subscriber is a lightweight flask app that recieves callbacks from marathon 
   * expects environment variables for CONTAINER_HOST_ADDRESS and CONTAINER_HOST_PORT. These are the public ips of the host and the port that is mapped to container port 5000
   * ex: docker run -t -p 5000:5000 -e CONTAINER_HOST_ADDRESS=54.184.184.23 -e CONTAINER_HOST_PORT=5000 54.189.193.228:5000/subscriber
 
-## Launching images
+### Launching images
 Interface to mesos cluster is Theseus, a framework build on top of marathon
 * see theseus readme for more information
 
-## Guestutils
+### Guestutils
 
 To be registered properly in etcd images __must expose ports__ they need to map to host ports (explicit EXPOSE port1 port2... in Dockerfile)
 Images should also __include python-etcd__. An example of this is in docker-images/etcd-base
@@ -64,7 +64,7 @@ Images can use the same convenience functions (same method names and signatures)
 * get_specific_exposed_port(service, container, port, default)
  * returns exposed port
 
-## Receiving Updates
+### Receiving Updates
 containers can be set up to recieve updates when certain services are modified. This is implemented through watching keys in etcd.
 * how to recieve updates:
  * include watcher.py and watch_methods.py (just like guestutils)
@@ -72,7 +72,7 @@ containers can be set up to recieve updates when certain services are modified. 
  * watcher.py will watch those keys in etcd and run the custom method in watch_methods.py
  * implement watch_methods.py to respond appropriately to changes recieved from etcd
 
-## Architecture
+# Architecture
 ![alt tag](comparisons/mesos-kub.png)
 
 ## Responsibilities
