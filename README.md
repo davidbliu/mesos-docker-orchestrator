@@ -20,11 +20,11 @@ in topology. generic methods link rolling upgrades with configurable wait interv
 		- [Guestutils](#guestutils)
 		- [Receiving Updates](#receiving-updates)
 - [Architecture](#architecture)
-	_ [Layers](#Layers)
+	- [Layers](#layers)
 	- [Responsibilities](#responsibilities)
 	- [Ideal (?) Separation](#ideal--separation)
 	- [Alternate design choices](#alternate-design-choices)
-- [Demos](#Demos)
+- [Demos](#demos)
 	- [Sprint 1 Demo (old)](#sprint-1-demo-old)
 
 # Getting started
