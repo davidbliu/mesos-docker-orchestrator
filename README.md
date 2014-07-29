@@ -9,6 +9,8 @@ the mesos-docker orchestration tool has many pluggable components to allow custo
 for example there are convenience methods for reading topology and pluggable user-defined methods for responding to changes
 in topology. generic methods link rolling upgrades with configurable wait interval also provided.
 
+# Table of contents
+
 # Getting started
 
 
