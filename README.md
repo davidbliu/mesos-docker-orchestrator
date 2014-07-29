@@ -11,9 +11,7 @@ in topology. generic methods link rolling upgrades with configurable wait interv
 
 # Table of contents
 
-**Table of Contents**
-
-- [Mesos-Docker-Orchestrator](#mesos-docker-orchestrator)
+- [Overview](#mesos-docker-orchestrator)
 - [Table of contents](#table-of-contents)
 - [Getting started](#getting-started)
 		- [Setting up a mesos cluster](#setting-up-a-mesos-cluster)
@@ -22,10 +20,12 @@ in topology. generic methods link rolling upgrades with configurable wait interv
 		- [Guestutils](#guestutils)
 		- [Receiving Updates](#receiving-updates)
 - [Architecture](#architecture)
+	_ [Layers](#Layers)
 	- [Responsibilities](#responsibilities)
 	- [Ideal (?) Separation](#ideal--separation)
 	- [Alternate design choices](#alternate-design-choices)
-- [Sprint 1 Demo (old)](#sprint-1-demo-old)
+- [Demos](#Demos)
+	- [Sprint 1 Demo (old)](#sprint-1-demo-old)
 
 # Getting started
 
@@ -93,7 +93,16 @@ containers can be set up to recieve updates when certain services are modified. 
 # Architecture
 ![alt tag](comparisons/mesos-kub.png)
 
-## Responsibilities
+### Layers
+* workstation
+* marathon framework (theseus)
+* marathon
+* mesos-master
+* slave host machine
+* mesos-slave
+* docker
+
+### Responsibilities
 __cluster manager (mesos) resonsibilities__
 * keep track of host/ports
 * provide interface for containers to query endpoints of other containers
@@ -104,7 +113,7 @@ __cluster manager (mesos) resonsibilities__
  * metrics (cpu, memory, network etc). each host machine collect metrics about containers deployed on it
  * logs (log shipping)
 
-## Ideal (?) Separation
+### Ideal (?) Separation
 
 application configuration
 * interfaces with cluster manager. what and how many to deploy. some constraints like deploy only on large vms and all containers on unique hosts etc
@@ -124,7 +133,7 @@ application
 * what to do when endpoints of other services change
 * how to shut down gracefully
 
-## Alternate design choices
+### Alternate design choices
 * who updates configuration in etcd?
  * current: subscriber to marathon
  * process running on slave to check
@@ -139,7 +148,9 @@ application
  * current: container management framework
  * etcd (could have a directory for config and a directory for enpoint info)
 
-## Sprint 1 Demo (old)
+# Demos
+
+### Sprint 1 Demo (old)
 * mesos master/slaves/marathon already running on ec2 instances
  * mesos: http://54.188.87.91:5050/
  * marathon: http://54.188.87.91:8080/
