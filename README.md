@@ -10,7 +10,8 @@ for example there are convenience methods for reading topology and pluggable use
 in topology. generic methods link rolling upgrades with configurable wait interval also provided.
 
 # Table of contents
-**Table of Contents**
+
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
 - [Mesos-Docker-Orchestrator](#user-content-mesos-docker-orchestrator)
 - [Table of contents](#user-content-table-of-contents)
@@ -25,7 +26,7 @@ in topology. generic methods link rolling upgrades with configurable wait interv
 	- [Ideal (?) Separation](#user-content-ideal--separation)
 	- [Alternate design choices](#user-content-alternate-design-choices)
 	- [Sprint 1 Demo (old)](#user-content-sprint-1-demo-old)
-	- 
+
 # Getting started
 
 
