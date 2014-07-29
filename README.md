@@ -14,11 +14,11 @@ in topology. generic methods link rolling upgrades with configurable wait interv
 - [Overview](#mesos-docker-orchestrator)
 - [Table of contents](#table-of-contents)
 - [Getting started](#getting-started)
-		- [Setting up a mesos cluster](#setting-up-a-mesos-cluster)
-		- [Setting up etcd service discovery](#setting-up-etcd-service-discovery)
-		- [Launching images](#launching-images)
-		- [Guestutils](#guestutils)
-		- [Receiving Updates](#receiving-updates)
+	- [Setting up a mesos cluster](#setting-up-a-mesos-cluster)
+	- [Setting up etcd service discovery](#setting-up-etcd-service-discovery)
+	- [Launching images](#launching-images)
+	- [Guestutils](#guestutils)
+	- [Receiving Updates](#receiving-updates)
 - [Architecture](#architecture)
 	- [Layers](#layers)
 	- [Responsibilities](#responsibilities)
@@ -58,6 +58,8 @@ The subscriber is a lightweight flask app that recieves callbacks from marathon 
 ### Launching images
 Interface to mesos cluster is Theseus, a framework build on top of marathon
 * see theseus readme for more information
+* organizes deployments by service and labels
+* manages apps and tasks in marathon and their configuration
 
 ### Guestutils
 
