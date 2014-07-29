@@ -197,10 +197,10 @@ ssh -i dliukeypair.pem ubuntu@ec2-54-176-99-67.us-west-1.compute.amazonaws.com
 
 1. __architecture__
   * diagram - separation of concerns - what is responsible for what
-2. fabric
 3. already running: cassandra, presenter, watcher, haproxy, ingestor (all dev)
 3. testing haproxy, testing ingestor
 4. send traffic
 5. rolling update
 6. watcher/haproxy -> show etcd key watching
 7. logs and metrics in one place
+8. fabric (getting started)
