@@ -177,5 +177,22 @@ what to do when endpoints of other services change, how to shut down gracefully 
 * comparisons between orchestration tools on github
 
 ### Sprint 2 demo
-* cassandra, haproxy, presenter, ingestor already running
-* see ingestor name
+
+__last sprint:__ deploying containers directly through marathon. loose organization of containers (only know about 
+apps and tasks in marathon). marathon apps and tasks are not the best descriptors for dockerized applications and services, however.
+did not implement etcd watching - scheduling framework would have had to been application specific to sent messages to specific apps to run nodetool cleanup, for example. 
+weaker separation of concerns
+
+__this sprint:__ framework on top of marathon to manage marathon apps and tasks. allows flexibility for managing docker containers
+specifically. implemented basic scheduling routines in framework. research on separation of concerns (drawing most ideas from kubernetes).
+what should framework, master, slave, applications be responsible for.
+
+__demo goals:__
+show basic scheduling tasks
+show organization benefits of framework
+show monitoring, logging features/responsibilities of mesos-docker tool
+
+1. __architecture__
+  * diagram - separation of concerns - what is responsible for what
+2. already running: cassandra, presenter, watcher, haproxy, ingestor
+3. 
