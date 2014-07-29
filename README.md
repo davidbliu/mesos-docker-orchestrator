@@ -1,7 +1,16 @@
 Mesos-Docker-Orchestrator
 =========================
 
-mesos-docker orchestration tool
+container cluster management with mesos and docker. enables users to run their containers on a cluster without having to manage specific machines and ports.
+hosts and ports are automatically chosen by the mesos-docker tool, which is resource-aware. tool supports labeling and naming services
+to allow easy queries for specific containers. 
+
+the mesos-docker orchestration tool has many pluggable components to allow customizable behavior for each application.
+for example there are convenience methods for reading topology and pluggable user-defined methods for responding to changes
+in topology. generic methods link rolling upgrades with configurable wait interval also provided.
+
+# Getting started
+
 
 ## Setting up a mesos cluster
 * fabric files included for getting up and running with a mesos cluster
