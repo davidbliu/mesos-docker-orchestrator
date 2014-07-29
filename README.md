@@ -41,6 +41,7 @@ in topology. generic methods link rolling upgrades with configurable wait interv
  * launch ec2 instances. name master node "mesos-master" and slave nodes "mesos-slave"
  * __fab master_env master_main__ to install and run mesos, marathon, etcd, subscriber on master
  * __fab slave_env slave_main__ to install and run mesos, deimos on slaves
+ * --event_subscriber http_callback
 
 ### Setting up etcd service discovery
 Service discovery is implemented with __etcd__ and uses an event __subscriber__ to marathon to maintain status of containers. 
