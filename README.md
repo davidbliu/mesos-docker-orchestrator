@@ -25,6 +25,7 @@ in topology. generic methods link rolling upgrades with configurable wait interv
 	- [Alternate design choices](#alternate-design-choices)
 - [Demos](#demos)
 	- [Sprint 1 Demo (old)](#sprint-1-demo-old)
+	- [Sprint 2 Demo](#sprint-2-demo)
 
 # Getting started
 
@@ -174,3 +175,7 @@ what to do when endpoints of other services change, how to shut down gracefully 
  * ssh in and see:
  * ssh -p 22000 container@{{ host_ip }}
 * comparisons between orchestration tools on github
+
+### Sprint 2 demo
+* cassandra, haproxy, presenter, ingestor already running
+* see ingestor name
