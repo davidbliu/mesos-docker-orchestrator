@@ -11,7 +11,7 @@ in topology. generic methods link rolling upgrades with configurable wait interv
 
 # Table of contents
 
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+**Table of Contents**
 
 - [Mesos-Docker-Orchestrator](#mesos-docker-orchestrator)
 - [Table of contents](#table-of-contents)
