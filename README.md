@@ -192,6 +192,8 @@ show basic scheduling tasks
 show organization benefits of framework
 show monitoring, logging features/responsibilities of mesos-docker tool
 
+ssh -i dliukeypair.pem ubuntu@ec2-54-176-99-67.us-west-1.compute.amazonaws.com
+
 1. __architecture__
   * diagram - separation of concerns - what is responsible for what
 2. fabric
